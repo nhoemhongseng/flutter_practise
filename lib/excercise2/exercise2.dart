@@ -29,7 +29,9 @@ class _Exercise2State extends State<Exercise2> {
     return Container(
         margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
         decoration: BoxDecoration(
-            color: Colors.blueGrey, borderRadius: BorderRadius.circular(10)),
+          color: Colors.blueGrey,
+          borderRadius: BorderRadius.circular(10),
+        ),
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
         child: Row(
           children: [
@@ -75,10 +77,15 @@ class _Exercise2State extends State<Exercise2> {
         ),
       ),
       body: Container(
-          child: _list.isEmpty
-              ? const Center(child: CircularProgressIndicator.adaptive())
-              : ListView.builder(
-                  itemCount: _list.length, itemBuilder: _renderItemWidget)),
+        child: _list.isEmpty
+            ? const Center(
+                child: CircularProgressIndicator.adaptive(),
+              )
+            : ListView.builder(
+                itemCount: _list.length,
+                itemBuilder: _renderItemWidget,
+              ),
+      ),
     ));
   }
 }

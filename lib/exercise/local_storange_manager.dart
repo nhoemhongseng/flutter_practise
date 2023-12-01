@@ -22,11 +22,25 @@ class LocalStorageManager {
   }
 
   Future<bool> putUser(UserModel userModel) async {
-    return putString(key: "UserModel", value: jsonEncode(userModel.toJson()));
+    final users = await getUsers();
+    users.add(userModel);
+    return putUsers(users);
   }
 
   Future<UserModel> getUser() async {
     final userModelStr = await getString("UserModel");
     return UserModel.fromJson(jsonDecode(userModelStr ?? ""));
+  }
+
+  Future<bool> putUsers(List<UserModel> users) async {
+    final pref = await _getSharePreference();
+    List<String> userListStr = users.map((e) => jsonEncode(e)).toList();
+    return pref.setStringList("Users", userListStr);
+  }
+
+  Future<List<UserModel>> getUsers() async {
+    final pref = await _getSharePreference();
+    final users = pref.getStringList("Users");
+    return users?.map((e) => UserModel.fromJson(jsonDecode(e))).toList() ?? [];
   }
 }

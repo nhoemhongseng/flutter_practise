@@ -12,11 +12,13 @@ class DioClient {
       receiveTimeout: const Duration(seconds: 30),
       responseType: ResponseType.json));
 
-  Future<Map<String, dynamic>> get(String path,
-      {Map<String, dynamic>? queryParameters,
-      Options? options,
-      CancelToken? cancelToken,
-      ProgressCallback? onReceiveProgress}) async {
+  Future<Map<String, dynamic>> get({
+    required String path,
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+    CancelToken? cancelToken,
+    ProgressCallback? onReceiveProgress,
+  }) async {
     try {
       final res = await _dio.get(
         path,

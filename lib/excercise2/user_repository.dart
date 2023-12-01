@@ -8,11 +8,11 @@ abstract class UserRepository {
   Future<List<User>> getUserList();
 }
 
-class UserRepositoryImpl implements UserRepository {
+class UserRepositoryImpl extends UserRepository {
   @override
   Future<List<User>> getUserList() async {
     try {
-      final res = await DioClient.instance.get(USER_PATH);
+      final res = await DioClient.instance.get(path: USER_PATH);
       final list = res["data"] as List;
       final userList = list.map((e) => User.fromJson(e)).toList();
       return userList;

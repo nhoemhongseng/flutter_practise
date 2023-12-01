@@ -11,7 +11,7 @@ class ExerciseOne extends StatefulWidget {
 
 class _ExersiceOneState extends State<ExerciseOne> {
   final localManager = LocalStorageManager.instance;
-  UserModel? _userModel;
+  List<UserModel> _users = [];
 
   final _nameController = TextEditingController();
   final _emailController = TextEditingController();
@@ -21,20 +21,22 @@ class _ExersiceOneState extends State<ExerciseOne> {
       return;
     }
     final isSave = await localManager.putUser(
-        UserModel(name: _nameController.text, email: _emailController.text));
+      UserModel(
+        name: _nameController.text,
+        email: _emailController.text,
+      ),
+    );
+
     if (isSave) {
       _nameController.clear();
       _emailController.clear();
-      ScaffoldMessenger.of(context)
-          .showSnackBar(const SnackBar(content: Text("Save Successfully")));
-      print("=== Save Successfully ===");
     }
   }
 
   void _getUser() async {
-    UserModel user = await localManager.getUser();
+    final users = await localManager.getUsers();
     setState(() {
-      _userModel = user;
+      _users = users;
     });
   }
 
@@ -66,8 +68,6 @@ class _ExersiceOneState extends State<ExerciseOne> {
         body: Container(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               TextField(
                 controller: _nameController,
@@ -101,12 +101,35 @@ class _ExersiceOneState extends State<ExerciseOne> {
               const SizedBox(
                 height: 10,
               ),
-              Text(
-                _userModel?.toString() ?? "",
-                style: const TextStyle(
-                    fontSize: 16,
-                    decoration: TextDecoration.none,
-                    color: Colors.black),
+              Expanded(
+                child: ListView.builder(
+                  itemCount: _users.length,
+                  itemBuilder: (context, index) {
+                    final item = _users[index];
+                    return Container(
+                      margin: const EdgeInsets.only(top: 8),
+                      decoration: BoxDecoration(
+                          color: Colors.blueAccent,
+                          borderRadius: BorderRadius.circular(20)),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 8, horizontal: 10),
+                      child: Column(
+                        children: [
+                          Text(
+                            item.name ?? "",
+                            style: const TextStyle(
+                                fontSize: 16, color: Colors.white),
+                          ),
+                          Text(
+                            item.email ?? "",
+                            style: const TextStyle(
+                                fontSize: 16, color: Colors.white),
+                          )
+                        ],
+                      ),
+                    );
+                  },
+                ),
               )
             ],
           ),
