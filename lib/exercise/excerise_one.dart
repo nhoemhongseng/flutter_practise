@@ -61,12 +61,14 @@ class _ExersiceOneState extends State<ExerciseOne> {
       child: Scaffold(
         appBar: AppBar(
           title: const Text("Local Storage"),
+          backgroundColor: Colors.blue,
+          foregroundColor: Colors.white,
           leading: IconButton(
               onPressed: () => Navigator.of(context).pop(),
               icon: const Icon(Icons.arrow_back_ios)),
         ),
         body: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           child: Column(
             children: [
               TextField(
@@ -109,10 +111,13 @@ class _ExersiceOneState extends State<ExerciseOne> {
                     return Container(
                       margin: const EdgeInsets.only(top: 8),
                       decoration: BoxDecoration(
-                          color: Colors.blueAccent,
-                          borderRadius: BorderRadius.circular(20)),
+                        color: Colors.blueAccent,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
                       padding: const EdgeInsets.symmetric(
-                          vertical: 8, horizontal: 10),
+                        vertical: 8,
+                        horizontal: 10,
+                      ),
                       child: Column(
                         children: [
                           Text(

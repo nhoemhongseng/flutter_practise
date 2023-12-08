@@ -35,8 +35,7 @@ class _Exercise2State extends State<Exercise2> {
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
         child: Row(
           children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(50),
+            ClipOval(
               child: Image.network(
                 user.avatar ?? "",
                 width: 80,
@@ -71,6 +70,8 @@ class _Exercise2State extends State<Exercise2> {
         child: Scaffold(
       appBar: AppBar(
         title: const Text('Exercise 2'),
+        backgroundColor: Colors.blue,
+        foregroundColor: Colors.white,
         leading: IconButton(
           onPressed: () => Navigator.pop(context),
           icon: const Icon(Icons.arrow_back_ios),

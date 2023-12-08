@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/route_manager.dart';
 import 'package:test1/excercise2/exercise2.dart';
+import 'package:test1/getx/coin_binding.dart';
+import 'package:test1/getx/getx_screen.dart';
 
 import 'exercise/excerise_one.dart';
 
@@ -12,7 +15,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
+      initialBinding: CoinBinding(),
       title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
@@ -65,6 +69,13 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             _button("Exercise 2",
                 onPressed: () => _onMaterialRout(const Exercise2())),
+            const SizedBox(
+              height: 10,
+            ),
+            _button(
+              "GetX",
+              onPressed: () => _onMaterialRout(const GetXScreen()),
+            )
           ],
         ), // This trailing comma makes auto-formatting nicer for build methods.
       )),

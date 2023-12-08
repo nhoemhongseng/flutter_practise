@@ -43,4 +43,9 @@ class LocalStorageManager {
     final users = pref.getStringList("Users");
     return users?.map((e) => UserModel.fromJson(jsonDecode(e))).toList() ?? [];
   }
+
+  Future<bool> removeAll() async {
+    final pref = await _getSharePreference();
+    return pref.clear();
+  }
 }
