@@ -18,10 +18,11 @@ class _GetXScreenState extends State<GetXScreen> {
   void initState() {
     _controller.errorMsg.listen((msg) {
       if (msg.isNotEmpty) {
-        ScaffoldMessenger.of(context)
-            .showSnackBar(SnackBar(content: Text(_controller.errorMsg.value)));
+        Get.snackbar("Information", _controller.errorMsg.value);
       }
     });
+
+    _controller.getCoinList();
 
     super.initState();
   }

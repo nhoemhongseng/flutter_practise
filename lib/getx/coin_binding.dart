@@ -6,6 +6,7 @@ class CoinBinding extends Bindings {
   @override
   void dependencies() {
     Get.put<CoinRepository>(CoinRepositoryImpl());
-    Get.lazyPut(() => Controller(repository: Get.find<CoinRepository>()));
+    Get.lazyPut(() => Controller(repository: Get.find<CoinRepository>()),
+        fenix: true);
   }
 }

@@ -10,7 +10,8 @@ class DioClient {
       baseUrl: BASE_URL,
       connectTimeout: const Duration(seconds: 30),
       receiveTimeout: const Duration(seconds: 30),
-      responseType: ResponseType.json));
+      responseType: ResponseType.json))
+    ..interceptors.addAll([LogInterceptor()]);
 
   Future<Map<String, dynamic>> get({
     required String path,

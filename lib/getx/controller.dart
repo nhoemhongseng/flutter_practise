@@ -4,6 +4,7 @@ import 'package:test1/getx/coin_model.dart';
 import 'package:test1/getx/coin_repository.dart';
 
 class Controller extends GetxController {
+  
   final CoinRepository repository;
 
   Rx<bool> loading = false.obs;
@@ -13,8 +14,7 @@ class Controller extends GetxController {
 
   Controller({required this.repository});
 
-  @override
-  void onInit() async {
+  void getCoinList() async {
     try {
       loading(true);
       final res = await repository.getCoins();
@@ -23,6 +23,5 @@ class Controller extends GetxController {
     } on DioException catch (e) {
       errorMsg(e.message ?? "Opp! Something went wrong");
     }
-    super.onInit();
   }
 }

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:get/route_manager.dart';
+import 'package:get/get.dart';
 import 'package:test1/excercise2/exercise2.dart';
 import 'package:test1/getx/coin_binding.dart';
 import 'package:test1/getx/getx_screen.dart';
+import 'package:test1/stagger_grid/stagger_grid.dart';
 
 import 'exercise/excerise_one.dart';
 
@@ -25,6 +26,7 @@ class MyApp extends StatelessWidget {
       home: const MyHomePage(
         title: 'Flutter Demo Home Page',
       ),
+
     );
   }
 }
@@ -75,6 +77,13 @@ class _MyHomePageState extends State<MyHomePage> {
             _button(
               "GetX",
               onPressed: () => _onMaterialRout(const GetXScreen()),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            _button(
+              "Stagger Grid",
+              onPressed: () => _onMaterialRout(const StaggerGrid()),
             )
           ],
         ), // This trailing comma makes auto-formatting nicer for build methods.

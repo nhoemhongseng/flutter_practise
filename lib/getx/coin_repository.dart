@@ -8,6 +8,7 @@ abstract class CoinRepository {
 }
 
 class CoinRepositoryImpl extends CoinRepository {
+  
   @override
   Future<List<CoinModel>> getCoins({String currency = "usd"}) async {
     try {

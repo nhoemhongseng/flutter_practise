@@ -1,16 +1,20 @@
 import 'package:dio/dio.dart';
+import 'package:test1/client/log_intercepter.dart';
 import 'package:test1/getx/getx_constant.dart';
 
 class GetXClient {
-  GetXClient._();
+  late Dio _dio;
+
+  GetXClient._() {
+    _dio = Dio(BaseOptions(
+        baseUrl: GetXConstant.baseUrl,
+        connectTimeout: const Duration(seconds: 30),
+        receiveTimeout: const Duration(seconds: 30),
+        responseType: ResponseType.json))
+      ..interceptors.add(LoggerInterceptor());
+  }
 
   static final instance = GetXClient._();
-
-  final Dio _dio = Dio(BaseOptions(
-      baseUrl: GetXConstant.baseUrl,
-      connectTimeout: const Duration(seconds: 30),
-      receiveTimeout: const Duration(seconds: 30),
-      responseType: ResponseType.json));
 
   Future<dynamic> get({
     required String path,

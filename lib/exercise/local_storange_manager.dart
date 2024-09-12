@@ -34,7 +34,8 @@ class LocalStorageManager {
 
   Future<bool> putUsers(List<UserModel> users) async {
     final pref = await _getSharePreference();
-    List<String> userListStr = users.map((e) => jsonEncode(e)).toList();
+    List<String> userListStr =
+        users.map((e) => jsonEncode(e.toJson())).toList();
     return pref.setStringList("Users", userListStr);
   }
 
